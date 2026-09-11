@@ -1,55 +1,251 @@
-<!doctype html>
-<html lang="es"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="ExplicaFácil: entiende temas difíciles de forma sencilla y practica lo aprendido.">
-<title>ExplicaFácil — Aprende sin complicarte</title>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExplicaFácil</title>
 <style>
-:root{--p:#5b5cf0;--p2:#7c3aed;--bg:#f6f7fb;--card:#fff;--text:#17172b;--muted:#6b7280;--line:#e8e9f2}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text)}
-header{position:sticky;top:0;background:#f6f7fbeF;border-bottom:1px solid var(--line);backdrop-filter:blur(12px);z-index:5}
-nav{max-width:1050px;margin:auto;padding:16px 22px;display:flex;justify-content:space-between}.logo{font-size:21px;font-weight:900}.logo b{color:var(--p)}nav a{margin-left:20px;text-decoration:none;color:var(--muted);font-weight:700}
-.hero{max-width:1050px;margin:auto;padding:70px 22px 35px;text-align:center}.pill{background:#eeeeff;color:#4b4cc8;padding:8px 13px;border-radius:99px;font-weight:800;font-size:13px}
-h1{font-size:clamp(42px,8vw,76px);line-height:1;letter-spacing:-3px;margin:20px 0}.gradient{background:linear-gradient(90deg,var(--p),var(--p2));background-clip:text;color:transparent}.lead{max-width:680px;margin:auto;color:var(--muted);font-size:19px;line-height:1.6}
-.app{max-width:780px;margin:35px auto 0;background:white;border:1px solid var(--line);border-radius:25px;padding:25px;text-align:left;box-shadow:0 20px 55px #1f234b18}
-label{display:block;font-weight:900;margin-bottom:9px}textarea{width:100%;min-height:125px;border:2px solid var(--line);border-radius:17px;padding:16px;font:inherit;resize:vertical;outline:none}textarea:focus{border-color:var(--p)}
-.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.quick button{background:white;border:1px solid var(--line);border-radius:99px;padding:8px 11px;cursor:pointer}
-.row{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:11px}select,.mainbtn{height:48px;border-radius:13px;border:1px solid var(--line);padding:0 14px;font:inherit}.mainbtn{background:var(--p);color:white;border:0;font-weight:900;cursor:pointer;padding:0 20px}
-.result{display:none;margin-top:18px;background:#f7f7ff;border-radius:17px;padding:20px;line-height:1.7;border:1px solid #e4e4ff}.result h3{margin:0 0 8px}
-section{max-width:1050px;margin:auto;padding:70px 22px}h2{text-align:center;font-size:34px;margin:0 0 12px}.sectionlead{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 30px;line-height:1.6}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:white;border:1px solid var(--line);border-radius:20px;padding:23px}.icon{font-size:31px}.card h3{margin:12px 0 7px}.card p{color:var(--muted);line-height:1.55;margin:0}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.step{text-align:center}.num{margin:auto;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--p);color:white;font-weight:900}
-.cta{background:#17172b;color:white;border-radius:26px;padding:45px 25px;text-align:center}.cta p{color:#c8c9d6;line-height:1.6}.cta button{border:0;background:white;color:#17172b;padding:13px 19px;border-radius:12px;font-weight:900;cursor:pointer}
-footer{border-top:1px solid var(--line);padding:28px;text-align:center;color:var(--muted);font-size:14px}
-@media(max-width:700px){nav a{display:none}.row{grid-template-columns:1fr}.grid,.steps{grid-template-columns:1fr}h1{letter-spacing:-2px}}
-</style></head>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7ff;color:#182033}
+header{background:white;padding:18px 7%;border-bottom:1px solid #ddd}
+.logo{font-size:24px;font-weight:bold}
+.logo span{color:#635bff}
+main{max-width:1050px;margin:auto;padding:35px 20px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}
+h1{font-size:50px;margin:15px 0}
+.lead{font-size:19px;color:#667085;line-height:1.6}
+.card,.box{background:white;padding:24px;border-radius:20px;border:1px solid #e2e5ef;box-shadow:0 12px 35px #18204b12}
+textarea{width:100%;min-height:120px;padding:14px;border:1px solid #d8dce8;border-radius:14px;font:inherit}
+.row{display:flex;gap:10px;margin:12px 0;flex-wrap:wrap}
+select,button{padding:12px;border-radius:11px;border:1px solid #d8dce8;background:white;font-weight:bold}
+button{cursor:pointer}
+.primary{background:#635bff;color:white;border:0}
+.quick{background:#eef0ff;color:#5148d8}
+.result{display:none;margin-top:15px;padding:16px;background:#f4f3ff;border-radius:14px;line-height:1.6}
+section{margin-top:55px}
+.grid,.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.prices{grid-template-columns:1fr 1fr}
+.premium{border:2px solid #635bff}
+footer{text-align:center;padding:35px;color:#777}
+@media(max-width:750px){
+.hero,.grid,.prices{grid-template-columns:1fr}
+h1{font-size:40px}
+}
+</style>
+</head>
+
 <body>
-<header><nav><div class="logo">🧠 <b>Explica</b>Fácil</div><div><a href="#como">Cómo funciona</a><a href="#funciones">Funciones</a></div></nav></header>
+
+<header>
+<div class="logo">🧠 Explica<span>Fácil</span></div>
+</header>
+
 <main>
-<section class="hero">
-<span class="pill">✨ Aprende sin complicarte</span>
-<h1>Lo difícil puede ser<br><span class="gradient">fácil de entender.</span></h1>
-<p class="lead">Escribe un tema que no entiendas y recibe una explicación adaptada a tu nivel. Después, practica para comprobar lo que has aprendido.</p>
-<div class="app">
-<label for="q">¿Qué quieres aprender?</label>
-<textarea id="q" placeholder="Ej.: ¿Por qué ocurre la fotosíntesis?"></textarea>
-<div class="quick"><button onclick="fill('¿Qué es la fotosíntesis?')">🌱 Fotosíntesis</button><button onclick="fill('Explícame las fracciones')">➗ Fracciones</button><button onclick="fill('¿Qué fue la Revolución Francesa?')">🏛️ Historia</button></div>
-<div class="row"><select id="level"><option>Principiante</option><option>Intermedio</option><option>Avanzado</option></select><select id="style"><option>Explicación sencilla</option><option>Con ejemplos</option><option>Paso a paso</option></select><button class="mainbtn" onclick="explain()">✨ Explicar</button></div>
+
+<div class="hero">
+
+<div>
+<p>📚 TU COMPAÑERO DE ESTUDIO</p>
+<h1>Lo difícil puede ser fácil de entender.</h1>
+<p class="lead">
+Escribe una duda y recibe una explicación clara,
+con ejemplos y paso a paso.
+</p>
+</div>
+
+<div class="card">
+
+<h2>¿Qué quieres aprender?</h2>
+
+<textarea id="q"
+placeholder="Ej.: ¿Cómo funciona la fotosíntesis?"></textarea>
+
+<div class="row">
+
+<select id="level">
+<option>Principiante</option>
+<option>Intermedio</option>
+<option>Avanzado</option>
+</select>
+
+<select id="style">
+<option>Sencilla</option>
+<option>Con ejemplos</option>
+<option>Paso a paso</option>
+</select>
+
+</div>
+
+<div class="row">
+
+<button class="quick" onclick="fill('fotosíntesis')">
+Fotosíntesis
+</button>
+
+<button class="quick" onclick="fill('fracciones')">
+Fracciones
+</button>
+
+<button class="quick" onclick="fill('Revolución Francesa')">
+Historia
+</button>
+
+</div>
+
+<button class="primary" style="width:100%" onclick="explain()">
+✨ Explicar
+</button>
+
 <div id="result" class="result"></div>
-</div></section>
-<section id="como"><h2>Aprende en 3 pasos</h2><p class="sectionlead">No solo leas una respuesta: entiende, practica y mejora.</p><div class="steps">
-<div class="step"><div class="num">1</div><h3>Pregunta</h3><p>Escribe lo que no entiendes.</p></div><div class="step"><div class="num">2</div><h3>Comprende</h3><p>Recibe una explicación adaptada a ti.</p></div><div class="step"><div class="num">3</div><h3>Practica</h3><p>Comprueba si realmente lo has aprendido.</p></div>
-</div></section>
-<section id="funciones"><h2>Todo en un mismo sitio</h2><p class="sectionlead">La base para convertir ExplicaFácil en una herramienta educativa completa.</p><div class="grid">
-<div class="card"><div class="icon">🤖</div><h3>IA educativa</h3><p>Explicaciones adaptadas al nivel, con ejemplos y distintas formas de entender.</p></div>
-<div class="card"><div class="icon">📝</div><h3>Ejercicios</h3><p>Practica después de cada explicación y descubre qué necesitas repasar.</p></div>
-<div class="card"><div class="icon">🏆</div><h3>Progreso</h3><p>Puntos, rachas y objetivos para convertir el estudio en un hábito.</p></div>
-<div class="card"><div class="icon">📚</div><h3>Historial</h3><p>Guarda tus temas y vuelve a ellos cuando quieras.</p></div>
-<div class="card"><div class="icon">🌙</div><h3>Modo oscuro</h3><p>Una interfaz cómoda para estudiar a cualquier hora.</p></div>
-<div class="card"><div class="icon">📱</div><h3>Multidispositivo</h3><p>Diseñada para ordenador, tablet y móvil.</p></div>
-</div></section>
-<section><div class="cta"><h2>Estamos construyendo algo grande.</h2><p>Esta versión es la base. El siguiente paso será conectar la IA y convertir explicaciones, ejercicios y progreso en funciones reales.</p><button onclick="document.getElementById('q').focus()">Probar ExplicaFácil</button></div></section>
-</main><footer>© 2026 ExplicaFácil · Proyecto educativo</footer>
+
+</div>
+</div>
+
+<section>
+
+<h2>Cómo funciona</h2>
+
+<div class="grid">
+
+<div class="box">
+<b>1. Escribe</b>
+<p>Cuenta qué no entiendes.</p>
+</div>
+
+<div class="box">
+<b>2. Aprende</b>
+<p>Recibe una explicación adaptada.</p>
+</div>
+
+<div class="box">
+<b>3. Practica</b>
+<p>Más adelante añadiremos ejercicios y progreso.</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>⭐ ExplicaPremium</h2>
+
+<div class="prices">
+
+<div class="box">
+<h3>🆓 Gratis</h3>
+<h2>0 €</h2>
+<p>Explicaciones educativas y funciones básicas.</p>
+</div>
+
+<div class="box premium">
+<h3>⭐ Premium</h3>
+<h2>Próximamente</h2>
+<p>Más herramientas, ejercicios, historial y progreso.</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="card">
+
+<h2>🚀 Estamos empezando</h2>
+
+<p class="lead">
+Esta versión es gratuita. El siguiente paso será conectar
+una IA real de forma segura.
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+© 2026 ExplicaFácil
+</footer>
+
 <script>
-function fill(t){document.getElementById('q').value=t;document.getElementById('q').focus()}
-function explain(){let q=document.getElementById('q').value.trim(),r=document.getElementById('result');r.style.display='block';if(!q){r.innerHTML='<strong>Escribe un tema primero 🙂</strong>';return}let s=q.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));r.innerHTML='<h3>🧠 Preparando tu explicación</h3><p>Has elegido <strong>'+s+'</strong>.</p><p>Esta primera versión ya tiene la interfaz preparada para conectar una IA real. El siguiente paso será añadir el servidor que genere respuestas y ejercicios.</p>'}
-</script></body></html>
+
+function fill(text){
+document.getElementById("q").value=text;
+}
+
+function explain(){
+
+let q=document.getElementById("q").value.trim().toLowerCase();
+let result=document.getElementById("result");
+
+if(!q){
+result.innerHTML="✏️ Escribe una pregunta primero.";
+result.style.display="block";
+return;
+}
+
+let answer="";
+
+if(q.includes("fotosíntesis")){
+
+answer=`
+<b>🌱 Fotosíntesis</b><br><br>
+Las plantas utilizan la luz del Sol, agua y dióxido de carbono
+para fabricar su propio alimento y liberar oxígeno.
+<br><br>
+<b>Idea clave:</b><br>
+☀️ Luz + 💧 Agua + CO₂ → 🌱 Alimento + O₂
+`;
+
+}
+
+else if(q.includes("fraccion")){
+
+answer=`
+<b>🍕 Fracciones</b><br><br>
+Una fracción representa una parte de un todo.
+<br><br>
+Por ejemplo, en <b>3/4</b>:
+<br>
+• 3 = numerador<br>
+• 4 = denominador
+`;
+
+}
+
+else if(q.includes("revolución francesa")){
+
+answer=`
+<b>🇫🇷 Revolución Francesa</b><br><br>
+Comenzó en 1789 y fue un gran cambio político y social.
+Entre sus causas estuvieron las desigualdades sociales,
+los problemas económicos y las nuevas ideas sobre libertad
+e igualdad.
+`;
+
+}
+
+else{
+
+answer=`
+<b>💡 ExplicaFácil</b><br><br>
+Has preguntado sobre:
+<b>${q.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</b>
+<br><br>
+Esta versión todavía no tiene una IA conectada.
+Pero la interfaz ya está preparada para añadirla.
+`;
+
+}
+
+result.innerHTML=answer;
+result.style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
