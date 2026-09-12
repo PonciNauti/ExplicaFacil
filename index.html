@@ -171,129 +171,58 @@ una IA real de forma segura.
 
 <script>
 
+
 function fill(text){
-document.getElementById("q").value=text;
+  document.getElementById("q").value=text;
 }
 
 async function explain(){
 
-  let q=document.getElementById("q").value.trim();
-  let result=document.getElementById("result");
+  const q = document.getElementById("q").value.trim();
+  const result = document.getElementById("result");
 
   if(!q){
-    result.innerHTML="✏️ Escribe una pregunta primero.";
-    result.style.display="block";
+    result.innerHTML = "✏️ Escribe una pregunta primero.";
+    result.style.display = "block";
     return;
   }
 
-  result.innerHTML="🧠 Pensando...";
-  result.style.display="block";
+  result.innerHTML = "🧠 Pensando...";
+  result.style.display = "block";
 
-  try{
+  try {
 
     const response = await fetch(
-      "https://explicafacil-api.ericherdi011.workers.dev/",
+      "PEGA_AQUI_TU_URL_DE_CLOUDFLARE",
       {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
         },
-        body:JSON.stringify({
-          question:q
+        body: JSON.stringify({
+          question: q
         })
       }
     );
 
-    const data=await response.json();
+    const data = await response.json();
 
-    if(data.error){
-      result.innerHTML="❌ "+data.error;
+    if(!response.ok || data.error){
+      result.innerHTML = "❌ " + (data.error || "Ha ocurrido un error.");
       return;
     }
 
     result.innerHTML =
       "<b>🧠 ExplicaFácil</b><br><br>" +
-      data.answer.replace(/\n/g,"<br>");
+      String(data.answer || "No se recibió ninguna respuesta.")
+        .replace(/\n/g, "<br>");
 
-  }catch(error){
+  } catch(error) {
 
-    result.innerHTML="❌ No se ha podido conectar con la IA.";
+    result.innerHTML =
+      "❌ No se ha podido conectar con la IA.";
 
   }
-}
-
-let q=document.getElementById("q").value.trim().toLowerCase();
-let result=document.getElementById("result");
-
-if(!q){
-result.innerHTML="✏️ Escribe una pregunta primero.";
-result.style.display="block";
-return;
-}
-
-let answer="";
-
-if(q.includes("fotosíntesis")){
-
-answer=`
-<b>🌱 Fotosíntesis</b><br><br>
-Las plantas utilizan la luz del Sol, agua y dióxido de carbono
-para fabricar su propio alimento y liberar oxígeno.
-<br><br>
-<b>Idea clave:</b><br>
-☀️ Luz + 💧 Agua + CO₂ → 🌱 Alimento + O₂
-`;
-
-}
-
-else if(q.includes("fraccion")){
-
-answer=`
-<b>🍕 Fracciones</b><br><br>
-Una fracción representa una parte de un todo.
-<br><br>
-Por ejemplo, en <b>3/4</b>:
-<br>
-• 3 = numerador<br>
-• 4 = denominador
-`;
-
-}
-
-else if(q.includes("revolución francesa")){
-
-answer=`
-<b>🇫🇷 Revolución Francesa</b><br><br>
-Comenzó en 1789 y fue un gran cambio político y social.
-Entre sus causas estuvieron las desigualdades sociales,
-los problemas económicos y las nuevas ideas sobre libertad
-e igualdad.
-`;
-
-}
-
-else{
-
-answer=`
-<b>🧠 ExplicaFácil</b><br><br>
-La IA está preparando una explicación para ti...
-`;
-
-}
-
-answer=`
-<b>💡 ExplicaFácil</b><br><br>
-Has preguntado sobre:
-<b>${q.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</b>
-<br><br>
-Esta versión todavía no tiene una IA conectada.
-Pero la interfaz ya está preparada para añadirla.
-`;
-
-}
-
-result.innerHTML=answer;
-result.style.display="block";
 
 }
 
